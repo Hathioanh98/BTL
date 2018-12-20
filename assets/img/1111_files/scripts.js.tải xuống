@@ -1,0 +1,223 @@
+﻿$(document).ready(function(){
+
+    $('ul li:last-child, ol li:last-child, table tr:last-child, table tr td:last-child, table tr th:last-child').addClass("last");
+    $('ul li:first-child, ol li:first-child, table tr:first-child, table tr td:first-child, table tr th:first-child').addClass("first");
+
+    //data-table
+    if($("table.odd-even").length > 0){
+        $("table.odd-even").each(function(){
+            $(this).find("tbody tr:even").addClass("even");
+            $(this).find("tbody tr:odd").addClass("odd");
+        });
+    }
+
+    // Form style
+    $('select').uniform({selectAutoWidth:false});
+    $("input[type='radio'],input[type='checkbox'],input[type='file']").uniform();
+
+    // Navigation
+    $(".header .navigation > ul > li").hover(function(){
+        $(this).addClass("over").find(" > div, > ul").show();
+        if(!$(this).hasClass("active")){
+            $(".header .navigation > ul > li.active").addClass('disable-active');
+        }
+    },function(){
+        $(this).removeClass("over").find(" > div, > ul").hide();
+        $(".header .navigation > ul > li.active").removeClass('disable-active');
+    });
+
+    // mobile Navigation
+    $("#mobile-navigation").mmenu({
+        searchfield: true
+    }).trigger( "close.mm" )
+        .on(
+        "closed.mm",
+        function()
+        {
+            $(".mobile-nav-btn").removeClass("active");
+        }
+    );
+    $("#btnSendinquiry").click(function(){
+       var tel = $('#inquiry_number').val();
+	   var email = $('#inquiry_email').val();
+	   var content = $('#inquiry_content').val();
+	   $.ajaxq('cruise_cruise', {
+			type: 'POST',
+			url: '/ajaxsubscribe',
+			data: { tel: tel, email: email, content : content },
+			success: function(response) {
+				var obj = jQuery.parseJSON(response);
+				alert(obj.message);
+				$('#dealer-inquiry').hide();
+			}
+		});
+    });
+	
+	$(".mobile-nav-btn").click(function(){
+        if($(this).hasClass("active")){
+            $("#mobile-navigation").trigger("close");
+        }else{
+            $(this).addClass("active");
+            $("#mobile-navigation").trigger("open");
+        }
+    });
+
+    // mobile search cruise
+    $("#mobile-search-cruise").mmenu({
+        position : "right"
+    }).trigger( "close.mm" )
+        .on(
+        "closed.mm",
+        function()
+        {
+            $(".mobile-search-btn").removeClass("active");
+        }
+    );
+    $(".mobile-search-btn").click(function(){
+        if($(this).hasClass("active")){
+            $("#mobile-search-cruise").trigger("close");
+        }else{
+            $(this).addClass("active");
+            $("#mobile-search-cruise").trigger("open");
+        }
+    });
+
+    //Sidebar title btn
+    $(".sidebar .block-title").click(function(){
+        var ww = $(window).width();
+        if(ww<768){
+            $(this).toggleClass("show-sidebar-block");
+            $(this).next(".block-content").toggleClass("show-sidebar-block");
+            $(this).find(".glyphicon").toggleClass("glyphicon-chevron-down");
+        }
+    });
+    $(".sidebar .show-on-mobile").each(function(){
+        $(this).find(".block-title, .block-content").addClass("show-sidebar-block");
+        $(this).find(".block-title .glyphicon").toggleClass("glyphicon-chevron-down");
+    });
+
+    // Footer Toolbar
+    footerToolbarIconAdjust();
+    $(".footer-toolbar .close-toolbar").click(function(){
+        $(".footer-toolbar-container").hide();
+    });
+
+    //Form Inquiry
+    $('#dealer-inquiry').on('show', function () {
+        $(this).css("bottom", $(".footer-toolbar-container").height()+20+"px");
+    });
+
+    //set Col Main Height With Sidebar Small
+    setColMainHeightWithSidebarSmall();
+
+    // accordion status
+    if($('.accordion .accordion-heading').length > 0){
+        $('.accordion .accordion-body').each(function(){
+            if($(this).hasClass("in")){
+                $(this).prev(".accordion-heading").find("a").addClass("show-accordion-content");
+            }
+        });
+        $('.accordion .accordion-heading').click(function(){
+            $(this).parent(".accordion-group").siblings(".accordion-group").find(".accordion-heading a").removeClass("show-accordion-content");
+            $(this).find("a").toggleClass("show-accordion-content");
+        });
+    }
+
+    $('.nav-tabs li a').click(function (e) {
+    	if ($(this).hasClass('next')){
+    		return true;
+    	}
+        e.preventDefault();
+        $(this).tab('show');
+        var tabId = $(this).attr("href"),
+             sliderInTab = $(tabId).find(".royalSlider").data('royalSlider');
+        if(sliderInTab){
+            sliderInTab.updateSliderSize();
+        }
+        setColMainHeightWithSidebarSmall();
+    });
+
+    //
+    $(".cruise-desc-thumb-text .show-hide-content").click(function(){
+        $(this).toggleClass("show-text");
+        $(".cruise-desc-thumb-text .cruise-desc-text").toggleClass("show-text");
+        return false;
+    });
+
+    //Show-hide cabin info
+    $(".btn-show-room-info").click(function(){
+        var cabinId = $(this).attr("href"),
+             ww  = $(window).width();
+        if($(cabinId).hasClass("show-info-now")){
+            $(cabinId).css({
+                "display": "none",
+                "visibility":"hidden"
+            }).removeClass("show-info-now");
+            $(this).removeClass("show-info-now");
+        }else{
+            $(cabinId).removeAttr("style").addClass("show-info-now");
+            $(this).addClass("show-info-now");
+            if(ww < 768){
+                $('html, body').animate({
+                    scrollTop: $(cabinId).offset().top-60
+                }, 1500);
+            }
+        }
+        return false;
+    });
+
+    // multi tabs
+    $('.tabs-block').each( function() {
+        var container = $(this);
+        container.find('.tab-nav li a').click( function () {
+            $(this).parent().addClass( 'selected-tab' ).siblings().removeClass( 'selected-tab' );
+            container.find('.tab-content').hide().filter(this.hash).show();
+            return false;
+        }).eq(0).click();
+    });
+
+});
+
+$(window).resize(function(){
+    footerToolbarIconAdjust();
+    $('#dealer-inquiry').css("bottom", $(".footer-toolbar-container").height()+20+"px");
+    setColMainHeightWithSidebarSmall();
+});
+
+$(window).load(function(){
+    setColMainHeightWithSidebarSmall();
+});
+
+function footerToolbarIconAdjust() {
+    $(".footer-toolbar .toolbar-icon span").css("line-height", $(".footer-toolbar-container").height()+2+"px");
+}
+
+function setColMainHeightWithSidebarSmall() {
+    if($(".col2-right-layout.sidebar-small").length > 0){
+        $(".col2-right-layout.sidebar-small").each(function(){
+            var colMain = $(this).find(".col-main"),
+                sidebarHeight = $(this).find(".sidebar").outerHeight(),
+                ww = $(window).width();
+            colMain.css("min-height","auto");
+            if((ww > 767) && (colMain.outerHeight() < sidebarHeight)){
+                $(this).find(".col-main").css("min-height",sidebarHeight);
+            }
+        });
+    }
+    if($(".private-cruise-col2-layout").length > 0){
+        $(".private-cruise-col2-layout").each(function(){
+            var colMain = $(this).find(".content-left"),
+                sidebarHeight = $(this).find(".content-right").outerHeight(),
+                ww = $(window).width();
+            colMain.css("min-height","auto");
+            if((ww > 767) && (colMain.outerHeight() < sidebarHeight)){
+                $(this).find(".content-left").css("min-height",sidebarHeight);
+            }
+        });
+    }
+}
+
+function clearText(field){
+    if (field.defaultValue == field.value) field.value = '';
+    else if (field.value == '') field.value = field.defaultValue;
+}

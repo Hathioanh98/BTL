@@ -1,0 +1,203 @@
+.navbar.navbar-light.navbar-expand-md.navigation-clean-button {
+  float:right;
+}
+
+table
+{
+  clear: both;
+}
+
+
+.swiper-slide {
+  background-position:right;
+}
+
+
+.col-md-8 {
+  height:300px;
+}
+
+body{
+  background-color: white;
+}
+
+
+a {
+  color: red;
+ 
+}
+a:hover
+{
+  color: black;
+}
+
+.col-md-4
+{
+
+  width: 300px;
+  height: 1850px;
+  float: right;
+ margin-right:100px; 
+ margin-left: 0px;
+
+}
+.detail
+{
+
+  width: 1000px;
+  height: 1100px;
+  float: left;
+  margin-top: 10px;
+  font-weight: bold;
+  color: blue;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 15px;
+  margin-left: 100px;
+}
+.cuoi
+{
+ 
+  width: 1000px;
+  height: 300px;
+  margin-left: 100px;
+  float: left;
+}
+.a1
+{
+  
+  border: 5px solid gainsboro;
+  width: 300px;
+  height: 320px;
+  float: left;
+  margin-right: 50px;  background-color: gainsboro;
+}
+.a2
+{
+  
+  border: 5px solid gainsboro;
+  width: 300px;
+  height: 320px;
+  float: left;
+  margin: 0px auto;  background-color: gainsboro;
+}
+.a3
+{
+  
+  border: 5px solid gainsboro;
+  width: 300px;
+  height: 320px;
+  float: right;  background-color: gainsboro;
+
+}
+.a4
+{
+  
+  border: 5px solid gainsboro;
+  width: 300px;
+  height: 320px;
+  float: left;
+  margin-right: 50px;
+  margin-top: 50px;  background-color: gainsboro;
+}
+.a5
+{
+  
+  border: 5px solid gainsboro;
+  width: 300px;
+  height: 320px;
+  float: left;
+  margin-top: 50px;  background-color: gainsboro;
+}
+.a6
+{
+  
+  border: 5px solid gainsboro;
+  width: 300px;
+  height: 32opx;
+  float: right;
+  margin-top: 50px;
+  background-color: gainsboro;
+}
+#anh-1
+{
+  border: 1px solid black;
+  width: 300px;
+  height: 200px;
+}
+
+.cam-nang
+{ clear: both;
+
+  width: 998px;
+  height: 300px;
+}
+#n1
+{
+  border: 5px solid gainsboro;
+  width: 300px;
+  height: 80px;
+  float: left;
+  margin-right: 50px;
+  margin-top: 5px;
+  background-color: gainsboro;
+}
+#n2
+{
+  border: 5px solid gainsboro;
+  width: 300px;
+  height: 80px;
+  float: left;
+  margin-top: 5px;
+  background-color: gainsboro;
+}
+#n3
+{
+  border: 5px solid gainsboro;
+  width: 300px;
+  height: 80px;
+  float: right;
+  margin-top: 5px;
+  background-color: gainsboro;
+}
+#n4
+{
+  border: 5px solid gainsboro;
+  width: 300px;
+  height: 80px;
+  float: left;
+  margin-right: 50px;
+  margin-top: 30px;
+  background-color: gainsboro;
+}
+#n5
+{
+  border: 5px solid gainsboro;
+  width: 300px;
+  height: 80px;
+  float: left;
+  margin-top: 30px;
+  background-color: gainsboro;
+}
+#n6
+{
+  border: 5px solid gainsboro;
+  width: 300px;
+  height: 80px;
+  float: right;
+  margin-top: 30px;
+  background-color: gainsboro;
+}
+#anh-trai
+{
+  clear: both;
+
+}
+ul.list-group
+{
+  list-style: circle;
+}
+
+.footer-dark
+{
+  clear: both;
+}

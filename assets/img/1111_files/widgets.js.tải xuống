@@ -1,0 +1,37 @@
+
+	var ASSET_DIR = 'https://w.cokhach.com' ;
+	function addWidget(){
+		
+		addCSS('//w.cokhach.com/assets/css/slickModal.min.css');
+		addCSS('//w.cokhach.com/assets/css/style.css');
+		setTimeout(function(){addJs('//w.cokhach.com/assets/js/slickModal.min.js');},500);
+		/*
+		if (window.jQuery){
+			addJs('//w.cokhach.com/assets/js/slickModal.min.js');
+		}{
+			setTimeout(function(){addJs('//w.cokhach.com/assets/js/slickModal.min.js');},500);
+		}
+		*/
+		
+	}
+	addWidget();
+	
+	// Include CSS file
+	function addCSS(filename){ 
+		var head = document.getElementsByTagName('head')[0];
+		var style = document.createElement('link');
+		style.href = filename;
+		style.type = 'text/css';
+		style.rel = 'stylesheet';
+		head.append(style);
+	}
+
+	function addJs(filename){
+		var a = document.createElement("script");
+		a.src = filename;
+		a.type = "text/javascript";		
+		var head = document.getElementsByTagName('head')[0];
+		head.appendChild(a);
+	}
+	
+

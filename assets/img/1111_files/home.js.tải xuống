@@ -1,0 +1,70 @@
+﻿jQuery(document).ready(function($) {
+	$('#top-news').royalSlider({
+		transitionType: 'fade',
+		autoHeight: true,
+		arrowsNav: false,
+		fadeinLoadedSlide: false,
+		controlNavigationSpacing: 0,
+		controlNavigation: false,
+		imageScaleMode: 'none',
+		imageAlignCenter:false,
+		loop: false,
+		loopRewind: true,
+		numImagesToPreload: 6,
+		keyboardNavEnabled: true,
+		usePreloader: false,
+		autoPlay: {
+			enabled: true,
+			pauseOnHover: true,
+			delay: 10000
+		}
+	});
+	$('#full-width-slider').royalSlider({
+		arrowsNav: false,
+		loop: true,
+		keyboardNavEnabled: true,
+		controlsInside: false,
+		imageScaleMode: 'fill',
+		//autoHeight: true,
+		arrowsNavAutoHide: false,
+		autoScaleSlider: false,
+		autoScaleSliderWidth: 700,
+		autoScaleSliderHeight: 320,
+		imageScalePadding:0,
+		slidesSpacing:0,
+		controlNavigation: 'bullets',
+		thumbsFitInViewport: false,
+		navigateByClick: true,
+		startSlideId: 0,
+		transitionType:'move',
+		globalCaption: false,
+		deeplinking: {
+			enabled: true,
+			change: false
+		},
+		autoPlay: {
+			delay: 10000,
+			enabled: true,
+			pauseOnHover: true,
+			stopAtAction: 	false
+		},
+		imgWidth: 700,
+		imgHeight: 320
+	});
+	var categoryCarousel = $("#home-cruise-crousel");
+	categoryCarousel.owlCarousel({
+		itemsCustom : [
+			[0, 1],
+			[480, 2],
+			[768, 3]
+		],
+		autoPlay: 8000,
+		stopOnHover: true
+	});
+	$(".cruise-next-category").click(function(){
+		categoryCarousel.trigger('owl.next');
+	});
+	$(".cruise-prev-category").click(function(){
+		categoryCarousel.trigger('owl.prev');
+	});
+});
